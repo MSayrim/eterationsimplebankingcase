@@ -12,9 +12,14 @@ username : sa
 password : password
 
 
+API lere istek atabilmek için 
+No Auth seçilmeli
+
+![image](https://user-images.githubusercontent.com/11701050/210464684-b3e9a078-414d-4057-8656-5f834e2837e3.png)
+
+
 //User create
 http://localhost:8084/account/create
-Noauth
 ödeme için
 {
 "owner":"vodafone",
