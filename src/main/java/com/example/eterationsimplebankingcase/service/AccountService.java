@@ -33,6 +33,9 @@ public class AccountService {
         this.accountMapper = accountMapper;
     }
 
+    /**
+     * Create account
+     * */
     @Transactional
     public AccountDTO create(AccountDTO accountDTO) {
 
@@ -48,7 +51,9 @@ public class AccountService {
 
         return accountMapper.toDTO(account);
     }
-
+    /**
+     * Deposit
+     * */
     @Transactional
     public ResponseDTO deposit(String accountNumber, TransactionDTO transactionDTO) throws AccountNotFoundException {
         log.info("Deposit progress started");
@@ -67,7 +72,9 @@ public class AccountService {
             throw new AccountNotFoundException();
         }
     }
-
+    /**
+     * Withdrawal
+     * */
     @Transactional
     public ResponseDTO withdrawal(String accountNumber, TransactionDTO transactionDTO) throws InsufficientBalanceException, AccountNotFoundException {
         log.info("Withdrawal progress started");
@@ -92,6 +99,9 @@ public class AccountService {
 
     }
 
+    /**
+     * Payment
+     * */
     @Transactional
     public List<ResponseDTO> payment(String accountNumber, TransactionDTO transactionDTO) throws InsufficientBalanceException, AccountNotFoundException {
         log.info("Payment progress started");
@@ -116,7 +126,9 @@ public class AccountService {
             throw new AccountNotFoundException();
         }
     }
-
+    /**
+     * Account detail
+     * */
     @Transactional
     public AccountDTO accountDetail(String accountNumber) throws AccountNotFoundException {
         log.info("Account details recieving with fallowing accountNumber:{}", accountNumber);
@@ -129,6 +141,9 @@ public class AccountService {
         }
     }
 
+    /**
+     * Check ballance
+     * */
     @Transactional
     public Boolean checkBalance(String accountNumber, Double amount) {
         Account account = accountRepository.findAccountByAccountNumberAndActiveTrue(accountNumber);
@@ -141,18 +156,27 @@ public class AccountService {
         }
     }
 
+    /**
+     * Increase ballance
+     * */
     @Transactional
     public Double increaseBalance(Double currentBalance, Double amount) {
         log.info("New balance calculated +");
         return currentBalance + amount;
     }
 
+    /**
+     * Decrease ballance
+     * */
     @Transactional
     public Double decraseBalance(Double currentBalance, Double amount) {
         log.info("New balance calculated -");
         return currentBalance - amount;
     }
 
+    /**
+     * Response generator
+     * */
     @Transactional
     public ResponseDTO responseGenerator(Transaction transaction) {
         log.info("Response generate progress started");
